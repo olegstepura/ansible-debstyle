@@ -1,7 +1,7 @@
 galaxy_info:
   author: Oleg Stepura
   description: Personal styling of vim, bash and tmux
-  role_name: nix-style
+  role_name: debstyle
   namespace: olegstepura
 
   license: MIT
