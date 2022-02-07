@@ -1,0 +1,29 @@
+---
+- name: Download bash rules
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/olegstepura/config-bashrc/master/bash.bashrc.local.sh
+    dest: /etc/bash.bashrc.local.sh
+    mode: '0644'
+
+- name: Enable bash rules
+  ansible.builtin.lineinfile:
+    path: /etc/bash.bashrc
+    insertbefore: '^# check the window size'
+    line: '. /etc/bash.bashrc.local.sh && return'
+
+- name: Remove .bashrc in homedir
+  ansible.builtin.file:
+    path: .bashrc
+    state: absent
+
+- name: Download vim rules
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/olegstepura/config-vimrc/master/vimrc.local
+    dest: /etc/vim/vimrc.local
+    mode: '0644'
+
+- name: Download tmux rules
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/olegstepura/config-tmux/master/tmux.conf
+    dest: /etc/tmux.conf
+    mode: '0644'
